@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: ECR
-        image: 339712867708.dkr.ecr.eu-west-2.amazonaws.com/devops:latest
+        image: 339712867708.dkr.ecr.eu-west-2.amazonaws.com/devops:13
         ports:
           - containerPort: 80
 ---
