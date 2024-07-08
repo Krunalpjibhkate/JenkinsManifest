@@ -1,45 +1,37 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: dev
-  labels:
-    name: dev
-
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: Jenkins_deployment
   namespace: dev
   labels:
-    app: ECR
+    app: ecr
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: ECR
+      app: ecr
   template:
     metadata:
       labels:
-        app: ECR
+        app: ecr
     spec:
       containers:
-      - name: ECR
-        image: 339712867708.dkr.ecr.eu-west-2.amazonaws.com/devops:13
+      - name: ecr
+        image: 339712867708.dkr.ecr.eu-west-2.amazonaws.com/galaxypro
         ports:
           - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ECR-srv
+  name: ecr-srv
   namespace: dev   
 spec:
   type: ClusterIP
   selector:
-    app: ECR           
+    app: ecr           
   ports:
     - protocol: TCP
-      port: 80                      
+      port: 8080                     
       targetPort: 80
 ---      
